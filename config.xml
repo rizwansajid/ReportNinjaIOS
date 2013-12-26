@@ -17,6 +17,11 @@
        specific language governing permissions and limitations
        under the License.
 -->
+<name>InTouch Communicator</name>
+
+    <description>
+        A sample Apache Cordova application that responds to the deviceready event.
+    </description>
 <cordova>
     <!--
     access elements control the Android whitelist.
