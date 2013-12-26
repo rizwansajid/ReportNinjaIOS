@@ -1,0 +1,647 @@
+﻿<!DOCTYPE HTMLS>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="JS/jquery-1.8.3.js" type="text/javascript"></script>
+    <script type="text/javascript" src="js/jquery.Storage.js"></script>
+    <script type="text/javascript" src="js/jquery.jsonp-2.1.3.min.js"></script>
+    <!-- Accordion start-->
+    <style type="text/css">
+        .buttonDiv{
+            float:left;
+        }
+         .ui-accordion-header.ui-state-default {
+            background-color: #3797d4;
+            height: 40px;
+        }
+
+        .ui-accordion-header.ui-state-active {
+            background-color: #3797d4;
+            height: 40px;
+        }
+
+            .ui-accordion-header.ui-state-active .button_drop {
+                background: url('images/after-click.png');
+                height: 20px;
+                width: 25px;
+            }
+
+        .viewDiv p {
+            margin-top: 0px;
+            padding: 9px;
+            font-family: Arial;
+            font-size: 17px;
+            color: white;
+        }
+
+        #sub_menu_top {
+            margin-top: 3px;
+            display: none;
+            background-color: black;
+            float: left;
+            width: 99%;
+            position: absolute;
+            margin-top: 45px;
+        }
+
+            #sub_menu_top ul li {
+                list-style-type: none;
+                list-style-type: none;
+                float: left;
+                width: 100%;
+                background-color: #3797d4;
+                margin-top: 1px;
+                height: 37px;
+            }
+
+                #sub_menu_top ul li:hover {
+                    background-color: #1a4b4f;
+                }
+
+            #sub_menu_top ul {
+                margin-top: 1px;
+                -webkit-margin-before: 1px;
+                -webkit-margin-after: 1px;
+                -webkit-padding-start: 1px;
+            }
+
+                #sub_menu_top ul li a {
+                    font-family: Arial;
+                    font-size: 17px;
+                    color: white;
+                    padding: 9px;
+                    float: left;
+                    text-decoration: none;
+                }
+
+        .header_container {
+            width: 100%;
+            margin: 0 1%;
+        }
+
+        .header_right {
+            float: right;
+            margin-right: 20px;
+        }
+
+        .logo {
+            float: left;
+            background: url('images/logo.png') no-repeat;
+            height: 45px;
+            width: 46px;
+            margin-top: 0px;
+        }
+
+        .my_reports_text {
+            float: right;
+            width: 100px;
+            height: 100%;
+            padding-left: 10px;
+        }
+
+            .my_reports_text p {
+                color: white;
+                margin-top: 9px;
+                font-family: Arial;
+                font-size: 18px;
+            }
+
+        .header {
+            height: 45px;
+            background: url('images/header-bg.png') repeat-x;
+            width: 100%;
+        }
+
+        .menu_button {
+            float: left;
+            width: 31px;
+            height: 25px;
+            background: url('images/menuButton.png');
+            margin-left: 5px;
+            margin-top: 9px;
+        }
+
+        .heading3 {
+            font-size: 18px;
+            font-family: Arial;
+            color: white;
+            padding: 9px 0 0 5px;
+        }
+
+        .button_drop {
+            background: url('images/before-click.png') no-repeat;
+            height: 25px;
+            width: 25px;
+            float: right;
+            margin: -38px 10px 0 0px;
+        }
+
+        .sub_menu {
+            width: 95%;
+            float: right;
+        }
+
+            .sub_menu ul {
+                margin-top: 1.5px;
+            }
+
+                .sub_menu ul li {
+                    list-style-type: none;
+                    width: 100%;
+                    background-color: #3797d4;
+                    margin-top: 1px;
+                    height: 37px;
+                }
+
+                    .sub_menu ul li:hover {
+                        background-color: #1a4b4f;
+                    }
+
+                    .sub_menu ul li a {
+                        font-family: Arial;
+                        font-size: 17px;
+                        color: white;
+                        padding: 9px;
+                        float: left;
+                        text-decoration: none;
+                    }
+    </style>
+    <script>
+        function showDialog() {
+            $("#sub_menu_top").toggle("fast", function () {
+                if ($("#sub_menu_top").is(':visible')) {
+                    $("#menu_button1").css('background', 'url("images/menu-btn-clicked.png")  no-repeat');
+                }
+                else {
+                    $("#menu_button1").css('background', 'url("images/menuButton.png")');
+                }
+            });
+
+        }
+    </script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <!--<link rel="stylesheet" href="/resources/demos/style.css" />-->
+    <script>
+        $(function () {
+            $("#accordion").accordion({
+                collapsible: true,
+                active: false
+            });
+        });
+
+    </script>
+    <!-- Accordion ends -->
+    <script type="text/javascript">
+        var flag = "true";
+        // alert("Doc dot ready");
+        $(document).ready(function () {
+            //var online = navigator.onLine;    // Detecting the internet connection
+            ////alert(online);
+            //if (online) {
+            //    // do your stuff
+            //} else {
+            //    alert('You\'re Offline now...');
+            //    return false;
+            //}
+            $("#Account").click(function () {
+                //alert("Clic Acount");
+                MyAccount();
+            });
+            $("#Log").click(function () {
+               // alert("Click Log");
+                ActivityLog();
+            });
+            $("#mediamibrary").click(function(){
+               // alert("click media");
+                MediaLibrary();
+            });
+            $("#Forms").click(function () {
+                MyForms();
+            });
+            $("#LogOut").click(function () {
+                UserLogOut();
+            });
+            setTimeout(function () {
+                // alert("before");
+                funreports();
+                //alert("after")
+            }, 1500);
+           // $("#sub_menu_top").hide();
+
+            return false;
+            $("#myReports").click(function () {
+               // alert("1");
+                setTimeout(function () {
+                   // alert("before");
+                    funreports();
+                    //alert("after")
+                }, 1500);
+                $("#sub_menu_top").hide();
+
+                return false;
+
+            }
+
+       );
+           
+            
+            $('myDialog').dialog({
+                modal: true
+        });
+            //alert("1234");
+            function popUpEmail() {
+                $('#PostEmailStatus').fadeIn('fast', function () {
+                    $('#PopUpEmailboxStatus').animate({ 'top': '0px' }, 500);
+                });
+                return false;
+            }
+            //$(".buttonDiv").hide();
+            //   var Id = getUrlVars()["id"];
+            //   var username = getUrlVars()["username"];
+            //   //alert(Id);
+            //   $.Storage.set("id", Id);
+            //   //alert($.Storage.get("id"));
+            //   $.Storage.set("username", username);
+            //   //alert($.Storage.get("username"));
+            //   //alert("after");
+            //   //alert(flag);
+            //   if (flag == "true") {
+            ////       alert("Something");
+            //       $.ajax({
+
+            //           type: "POST",
+            //           //url: "http://projectx.2bvision.com/WebCommunicator/Webservice.asmx/GetSchoolUserByEmailAndPassword",
+            //           //url: "http://rnws1.2bvision.com/WebService.asmx/LoadReports",
+            //           //url: "http://www.reportninja.org/WebServices/WebService.asmx/LoadReports",
+            //           url: "WebService.asmx/LoadReports",
+            //           data: "{'id': '" + Id + "'}",
+            //           contentType: "application/json; charset=utf-8",
+            //           dataType: "json",
+            //           success: function (response) {
+            //               if (response != null && response != "") {
+            //  //                 alert("Something");
+            //    //               alert(response);
+            //                   flag = "false";
+            //      //             alert(flag);
+            //                   var prods = response.d;
+            //                   var myarray = prods.split(';');
+            //                   for (var i = 0; i < myarray.length - 1; i++) {
+            //                       var array = myarray[i].split(",");
+            //        //               alert("array of 6"+array[6]);
+            //                       if (array[6] == "True") {
+            //                           //alert("if");
+            //                           //alert(array[4]);
+
+            //                           $("#accordion").append("<div class='accordion_head'> " + "<p class='heading3'>" + array[0] + "</p>" + "<div class='button_drop'>" + "</div>" + "</div>" + "<div>" + "<div class='sub_menu'> " + "<ul>" + "<li>" + "<a class='buttonDiv pop' id='" + array[0] + "," + array[4] + "," + array[5] + "'>" + "Edit" + "</a>" + "</li>" + "<li>" + "<div class='viewDiv' onclick=location.href='http://www.reportninja.org/MobileViewer?i=" + array[1] + "&v=" + array[2] + "&p=" + array[3] + "';>" + "<p class='buttonDiv' >" + "View" + "</p>" + "</div>" + "</li>" + "<li>" + " <a class='buttonDiv' href='#'>" + "Generate" + "</a>" + "</li>" + "<li>" + "<a class='buttonDiv' href='sendReport.htm?id=" + Id + "&username=" + username + "&reportName=" + array[0] + "&reportGuid=" + array[1] + "&versionGuid=" + array[2] + "&pageGuid=" + array[3] + "'>" + "Send" + "</a>" + "</li>" + "<li>" + "<a class='buttonDiv' href='LockReport.htm?statusReport=" + array[6] + "&reportGuid=" + array[1] + "&versionGuid=" + array[2] + "&pageGuid=" + array[3] + "'>" + "Locked" + "</a>" + "</li>" + "<li>" + "<a class='buttonDiv' href='DeleteReport.htm?reportGuid=" + array[1] + "&versionGuid=" + array[2] + "'>" + "Delete" + "</a>" + "</li>" + "</ul>" + "</div>" + "</div>");
+            //                       }
+            //                       else {
+            //                           //alert("else");
+            //                           $("#accordion").append("<div class='accordion_head'> " + "<p class='heading3'>" + array[0] + "</p>" + "<div class='button_drop'>" + "</div>" + "</div>" + "<div>" + "<div class='sub_menu'> " + "<ul>" + "<li>" + "<a class='buttonDiv pop' id='" + array[0] + "," + array[4] + "," + array[5] + "'>" + "Edit" + "</a>" + "</li>" + "<li>" + "<div class='viewDiv' onclick=location.href='http://www.reportninja.org/MobileViewer?i=" + array[1] + "&v=" + array[2] + "&p=" + array[3] + "';>" + "<p class='buttonDiv' >" + "View" + "</p>" + "</div>" + "</li>" + "<li>" + "<a class='buttonDiv' href='#'>" + "Generate" + "</a>" + "</li>" + "<li>" + "<a class='buttonDiv' href='sendReport.htm?id=" + Id + "&username=" + username + "&reportName=" + array[0] + "&reportGuid=" + array[1] + "&versionGuid=" + array[2] + "&pageGuid=" + array[3] + "'>" + "Send" + "</a>" + "</li>" + "<li>" + "<a class='buttonDiv' href='LockReport.htm?statusReport=" + array[6] + "&reportGuid=" + array[1] + "&versionGuid=" + array[2] + "&pageGuid=" + array[3] + "'>" + "Lock" + "</a>" + "</li>" + "<li>" + "<a class='buttonDiv' href='DeleteReport.htm?reportGuid=" + array[1] + "&versionGuid=" + array[2] + "'>" + "Delete" + "</a>" + "</li>" + "</ul>" + "</div>" + "</div>");
+            //                       }
+            //                       //$("#divReports").append(array[0] + "<a class='pop' href='#'>" + "Send" + "</a>" + "<br/>");
+            //                   }
+            //                   $("#accordion").accordion('destroy').accordion({
+            //                       collapsible: true,
+            //                       active: false
+            //                   });
+            //                   //$("#popUp").attr("href", "ViewReport.htm?id=" + Id + "&username=" + username + "&reportName=" + array[0] + "&reportGuid=" + array[1] + "&versionGuid=" + array[2] + "&pageGuid=" + array[3] + "");
+
+            //                   //$("#popUp").attr("href", "EditReport.htm?reportId=" +  + "&reportName=" +  + "&reportPassword=" +  + "");
+            //               }
+            //               else {
+            //                   alert("No data to display");
+            //                   alert(response.d);
+
+            //               }
+            //           },
+            //           error: function (e) {
+            //               $("#Something").html("There was an error retrieving records." + "Error Description:  " + e.d);
+            //           }
+            //       });
+            //$("#accordion").accordion({
+            //    collapsible: true, active: false
+            //});
+        });
+
+        //      setTimeout(
+        //function () {
+        //    funreports();
+        //}, 2000);
+
+        function funreports() {
+           // alert("Yes called");
+            var Id = getUrlVars()["id"];
+            var username = getUrlVars()["username"];
+            var Email=getUrlVars()["Email"];
+            //$.Storage.set("id", Id);
+           // $.Storage.set("username", username);
+            if (flag == "true") {
+                $.ajax({
+                    type: "POST",
+                    url:"http://www.mobile.reportninja.org/webservice.asmx/LoadReports",
+                  //  url: "WebService.asmx/LoadReports",
+                    data: "{'id': '" + Id + "'}",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                       // alert("success1");
+                        if (response.d != null && response.d != "") {
+                         // alert("success");
+                            flag = "false";
+                            
+                            var prods = response.d;
+                           // alert("Responce:" +prods);
+                            var myarray = prods.split('$');
+                            for (var i = 0; i < myarray.length - 1; i++)
+                            {
+                                var array = myarray[i].split("~");
+                                //var reportGuid = array[1];
+                                //document.getElementById("reportGuid").value = reportGuid;
+                                //alert(array[2]);
+                                //var versionGuid = array[2];
+                                //document.getElementById("versionGuid").value = versionGuid;
+                                //var pageGuid = array[3];
+                                //document.getElementById("pageGuid").value = pageGuid;
+                                //               alert("array of 6"+array[6]);
+                                //alert("Html:" +array[7])
+                                if (array[6] == "True")
+                                {
+                                   // $.Storage.set(array[0], array[7]);
+                                    $("#accordion").append("<div class='accordion_head'> " + "<p class='heading3'>" + array[0] + "</p>" + "<div class='button_drop'>" + "</div>" + "</div>" + "<div>" + "<div class='sub_menu'> " + "<ul>" + "<li>" + "<div class='viewDiv' onclick=location.href='http://www.reportninja.org/MobileViewer?i=" + array[1] + "&v=" + array[2] + "&p=" + array[3] + "';>" + "<p class='buttonDiv' >" + "View" + "</p>" + "</div>" + "</li>" + "<li>" + "<a class='buttonDiv' href='sendReport.htm?id=" + Id + "&username=" + username + "&Email=" + Email + "&reportName=" + array[0] + "&reportGuid=" + array[1] + "&versionGuid=" + array[2] + "&pageGuid=" + array[3] + "'>" + "Send" + "</a>" + "</li>" + "<li>" + "<a class='buttonDiv' href='LockReport.htm?statusReport=" + array[6] + "&reportGuid=" + array[1] + "&versionGuid=" + array[2] + "&pageGuid=" + array[3] + "'>" + "Locked" + "</a>" + "</li>" + "<li>" + "<a class='buttonDiv' href='DeleteReport.htm?reportGuid=" + array[1] + "&versionGuid=" + array[2] + "&Id=" + Id + "&username=" + username + "&Email=" + Email + "'>" + "Delete" + "</a>" + "</li>" + "</ul>" + "</div>" + "</div>");
+                                }
+                                else
+                                {
+                                    //$.Storage.set(array[0], array[7]);
+                                    //alert("else");
+                                    $("#accordion").append("<div class='accordion_head'> " + "<p class='heading3'>" + array[0] + "</p>" + "<div class='button_drop'>" + "</div>" + "</div>" + "<div>" + "<div class='sub_menu'> " + "<ul>" + "<li>" + "<a class='buttonDiv pop' id='" + array[0] + "," + array[4] + "," + array[5] + "' href='EditReport.htm?ReportName=" + array[0] + "&reportPassword=" + array[4] + "&reportId=" + array[5] + "&Id=" + Id + "&username=" + username + "&Email="+ Email +"'>" + "Edit" + "</a>" + "</li>" + "<li>" + "<div class='viewDiv' onclick=location.href='http://www.reportninja.org/MobileViewer?i=" + array[1] + "&v=" + array[2] + "&p=" + array[3] + "';>" + "<p class='buttonDiv' >" + "View" + "</p>" + "</div>" + "</li>" + "<li>" + "<a class='buttonDiv' href='sendReport.htm?id=" + Id + "&username=" + username + "&Email=" + Email +"&reportName=" + array[0] + "&reportGuid=" + array[1] + "&versionGuid=" + array[2] + "&pageGuid=" + array[3] + "'>" + "Send" + "</a>" + "</li>" + "<li>" + "<a class='buttonDiv' href='LockReport.htm?statusReport=" + array[6] + "&reportGuid=" + array[1] + "&versionGuid=" + array[2] + "&pageGuid=" + array[3] + "&Id=" + Id + "&username=" + username + "'>" + "Lock" + "</a>" + "</li>" + "<li>" + "<a class='buttonDiv' href='DeleteReport.htm?reportGuid=" + array[1] + "&versionGuid=" + array[2] + "&Id=" + Id + "&username=" + username + "&Email=" + Email+"'>" + "Delete" + "</a>" + "</li>" + "</ul>" + "</div>" + "</div>");
+                                }
+                                //$("#divReports").append(array[0] + "<a class='pop' href='#'>" + "Send" + "</a>" + "<br/>");
+                            }
+                            $("#accordion").accordion('destroy').accordion({
+                                collapsible: true,
+                                active: false
+                            });
+                            $("#popUp").attr("href", "ViewReport.htm?id=" + Id + "&username=" + username + "&reportName=" + array[0] + "&reportGuid=" + array[1] + "&versionGuid=" + array[2] + "&pageGuid=" + array[3] + "");
+
+                            $("#popUp").attr("href", "EditReport.htm?reportId=" +  + "&reportName=" +  + "&reportPassword=" +  + "");
+                        }
+                        else {
+                            alert("No data to display");
+                            alert(response.d);
+
+                        }
+                    },
+                    error: function (e) {
+                        $("#Something").html("There was an error retrieving records." + "Error Description:  " + e.d);
+                    }
+
+                });
+            }
+        }
+        
+        function Generate(reportguid) {
+            alert("yes");
+            alert(reportguid);
+            $.ajax({
+
+                type: "POST",
+                url: "http://projectx.2bvision.com/WebCommunicator/Webservice.asmx/GetSchoolUserByEmailAndPassword",
+                //url: "WebService.asmx/DownloadPDF",
+                //data: "{'id': '" + Id + "'}",
+                data: "{'reportGuid':'" + document.getElementById("reportGuid").value + "','versionGuid':'" + document.getElementById("versionGuid") + "','pageGuid':'" + document.getElementById("pageGuid") + "'}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    if (response != null && response != "") {
+                        var PageHtml = response.d;
+                        document.getElementById('HiddenHtml').value = PageHtml;
+                        var Values = reportGuid + "~" + versionGuid + "~" + pageGuid;
+                        GeneratePDF(Values);
+                        alert("Report Download");
+                    }
+
+                    // window.location = "home.htm?id=" + $.Storage.get("id") + "&username=" + $.Storage.get("username") + "";
+
+                    /*else {
+                    alert("No data to display");
+                    alert(response.d);
+                    }*/
+                },
+                error: function (e) {
+                    $("#Something").html("There was an error retrieving records." + "Error Description:  " + e.d);
+                }
+
+            });
+        }
+     
+
+       
+
+
+        //          setTimeout(
+        //function () {
+        //    $(".pop").click(function () {
+        //        alert("call");
+        //        var pass = $(this).attr('id');
+        //        alert(pass);
+        //        var password = pass.split(",");
+        //        //alert(password[0]);
+        //        //alert(password[1]);
+        //        $('#txtReportName').val(password[0]);
+        //        $('#').val(password[1]);
+        //        //alert("before");
+        //        $.Storage.set("ReportId", password[2]);
+        //        //alert("after");
+        //        //$("#popUp").attr("href", "Home.htm?reportId=" + password[5] + "&reportName=" + $("#txtReportName").val() + "&reportPassword=" + +"");
+        //        $("#overlay_form").fadeIn(1000);
+        //        positionPopup();
+
+
+        //        //$("#txtReportName").val(array[0]);
+        //    });
+
+        //    //close popup
+        //    $("#close").click(function () {
+        //        $("#overlay_form").fadeOut(500);
+
+        //    });
+
+        //}, 2000);
+
+        //      });
+
+        function positionPopup() {
+            if (!$("#overlay_form").is(':visible')) {
+                return;
+            }
+            $("#overlay_form").css({
+                left: ($(window).width() - $('#overlay_form').width()) / 2,
+                top: ($(window).width() - $('#overlay_form').width()) / 7,
+                position: 'absolute'
+            });
+        }
+
+        //maintain the popup at center of the page when browser resized
+        $(window).bind('resize', positionPopup);
+
+
+        function getUrlVars() {
+            var vars = [], hash;
+            var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+            for (var i = 0; i < hashes.length; i++) {
+                hash = hashes[i].split('=');
+                vars.push(hash[0]);
+                vars[hash[0]] = hash[1];
+            }
+            return vars;
+        }
+
+        function txtValues() {
+
+            //preventDefault();
+            //window.location.replace = 'www.google.com';
+
+            //window.location = "test.htm?id=" + $.Storage.get("id") + "&username=" + $.Storage.get("username") + "";return false;
+            var name = document.getElementById("txtReportName").value;
+            var password = document.getElementById("txtPassword").value;
+            var ssss = $.Storage.get("ReportId");
+            window.location.href = "Home.html";
+            alert("after");
+            //$("#popUp").attr("href", "EditReport.htm?reportId=" + $.Storage.get("ReportId") + "&reportName=" + name + "&reportPassword=" + password + "");*/
+        }
+
+
+
+    </script>
+
+    <script type="text/javascript">
+        $(function () {
+            //Status Messages
+            $('#boxcloseStatus').click(function (e) {
+                $('#boxStatus').animate({ 'top': '-700px' }, 500, function () {
+                    $('#overlayStatus').fadeOut('fast');
+                });
+            });
+        });
+
+        $(function () {
+            //Status Messages
+            $('#signInboxcloseStatus').click(function (e) {
+                $('#signInboxStatus').animate({ 'top': '-450px' }, 500, function () {
+                    $('#signInStatus').fadeOut('fast');
+                });
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        //Account function start
+        function MyAccount() {
+
+            //alert("Account");
+            var Id = getUrlVars()["id"];
+            var username = getUrlVars()["username"];
+            var Email = getUrlVars()["Email"];
+            window.location = "Account.html?id=" + Id + "&username=" + username + "&Email=" + Email + "";
+            
+        }
+
+        //Account function end
+        //ActivityLog Function starts
+        function ActivityLog() {
+            var Id = getUrlVars()["id"];
+            var username = getUrlVars()["username"];
+            var Email = getUrlVars()["Email"];
+            window.location = "log.htm?id=" + Id + "&username=" + username + "&Email=" + Email + "";
+        }
+        //ActivityLog Function ends
+        // Media Library function starts
+        function MediaLibrary() {
+                var Id = getUrlVars()["id"];
+                var username = getUrlVars()["username"];
+                var Email = getUrlVars()["Email"];
+                window.location = "MediaLibrary.html?id=" + Id + "&username=" + username + "&Email=" + Email + "";
+        }
+        function MyForms() {
+            var Id = getUrlVars()["id"];
+            var username = getUrlVars()["username"];
+            var Email = getUrlVars()["Email"];
+            window.location = "MyForms.html?id=" + Id + "&username=" + username + "&Email=" + Email + "";
+        }
+        function UserLogOut() {
+            window.location = "index.html";
+        }
+    </script>
+
+
+
+</head>
+<body style="margin: 0px; padding: 0px; background-color: #F4F4F4">
+    <script type="text/javascript">
+        $(function () {
+            $("#popupGrid").hide();
+        }
+                )
+        function hideMotificationPopup() {
+            $('#boxStatus').animate({ 'top': '-400px' }, 500, function () {
+                $('#overlayStatus').fadeOut('fast');
+            });
+        }
+
+        $(function () {
+            $("#popupGrid").hide();
+        })
+
+
+
+    </script>
+    <div class="header">
+        <div class="header_container">
+            <div class="menu_button" id="menu_button1" onclick="showDialog()">
+
+            </div>
+            <div class="header_right">
+                <div class="logo">
+
+                </div>
+                <div class="my_reports_text">
+                    <p style="font-size:100%">Report Ninja</p>
+                </div>
+            </div>
+            <div id="sub_menu_top">
+                <ul>
+                    <li><a href="" id="myReports" style="text-decoration:none;">MY REPORTS</a></li>
+                    <li><a  id="Forms" style="text-decoration:none;">My Forms</a></li>
+                    <li><a  id="Account" style="text-decoration:none;">ACCOUNT</a></li>
+                    <li><a  id="Log" style="text-decoration:none;">LOG</a></li>
+                    <li><a  id="mediamibrary" style="text-decoration:none;">MEDIA LIBRARY</a></li>
+                    <li><a  id="LogOut" style="text-decoration:none;">LOGOUT</a></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+    
+        <div style="font-size: 26px; font-family:Lucida Grande, Lucida Sans Unicode, Verdana, Arial, Helvetica, sans-serif; font-weight: bold; color: #2D2D2D;">My Reports</div>
+    <div style=" margin: 20px 0 0 0; padding: 10px; border-top: 1px solid #3C3C3C; border-radius: 2px;">
+        <div id="accordion"></div>
+        <center><div id="divReportsButtons"></div></center>
+
+        <div id="overlay_form" style="display:none;">
+            <h2> Edit a Report..</h2>
+            <label>Report Name: </label><input type="text" id="txtReportName" name="username" /><br /><br />
+            <label>Password: </label><input type="text" id="txtPassword" name="password" /><br /><br />
+            <a id="popUp" href="" onclick="txtValues()">Save</a>
+            <a href="#" id="close">Close</a>
+        </div>
+
+
+
+
+        <input type="hidden" id="reportGuid" value="" />
+        <input type="hidden" id="versionGuid" value="" />
+        <input type="hidden" id="pageGuid" value="" />
+    </div>         
+</body>
+
+</html>
