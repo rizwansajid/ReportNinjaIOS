@@ -17,29 +17,20 @@
        specific language governing permissions and limitations
        under the License.
 -->
-<name>InTouch Communicator</name>
+<widget xmlns     = "http://www.w3.org/ns/widgets"
+        id        = "io.cordova.helloCordova"
+        version   = "2.9.0">
+    <name>Report Ninja</name>
 
     <description>
         A sample Apache Cordova application that responds to the deviceready event.
     </description>
-<cordova>
-    <!--
-    access elements control the Android whitelist.
-    Domains are assumed blocked unless set otherwise
-     -->
 
-    <access origin="http://127.0.0.1*"/> <!-- allow local pages -->
+    <author href="http://cordova.io" email="dev@cordova.apache.org">
+        Apache Cordova Team
+    </author>
 
-    <!-- <access origin="https://example.com" /> allow any secure requests to example.com -->
-    <!-- <access origin="https://example.com" subdomains="true" /> such as above, but including subdomains, such as www -->
-    <access origin=".*"/>
 
-    <!-- <content src="http://mysite.com/myapp.html" /> for external pages -->
-    <content src="index.html" />
-
-    <log level="DEBUG"/>
-    <preference name="useBrowserHistory" value="true" />
-    <preference name="exit-on-suspend" value="false" />
 <plugins>
     <plugin name="InAppBrowser" value="org.apache.cordova.InAppBrowser" />
     <plugin name="App" value="org.apache.cordova.App"/>
@@ -60,5 +51,5 @@
     <plugin name="SplashScreen" value="org.apache.cordova.SplashScreen"/>
     <plugin name="PushNotification" value="com.pushwoosh.plugin.pushnotifications.PushNotifications" onload="true"/>
 </plugins>
-</cordova>
+</widget>
 
