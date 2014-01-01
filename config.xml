@@ -7,14 +7,14 @@
   <preference name="phonegap-version" value="2.9.0" />
   <!-- versionCode is optional and Android only -->
 
-  <name>KidsToProSports</name>
+  <name>Report Ninja</name>
 
   <description>
-    Kids2ProSports is the world’s premier multicultural Global Sports Network and Legacy Search Engine. It’s exclusive “Timeline Features” provide the resources to Create, Share and Preserve “Your Sports Legacy“ from Childhood… to Professional and Beyond.
+    Our easy to use document builder allows individuals of all skill levels to build amazing and professional reports. We have taken out the frustrating and time consuming issues associated with traditional word processors and left you with an amazing, easy to use platform
   </description>
 
-  <author href="http://www.kids2prosports.com" email="adnanlatif.324@gmail.com">
-    Adnan Latif
+  <author href="http://www.reportninja.org/" email="rizwan.2bv@gmail.com">
+    Rizwan Sajid
   </author>
   <icon src="images/icon.png" gap:role="default" />
   <!--icons -->
