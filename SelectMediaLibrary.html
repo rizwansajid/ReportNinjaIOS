@@ -1,0 +1,330 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="Styles/style.css" rel="stylesheet" />
+    <script src="JS/jquery-1.8.3.js" type="text/javascript"></script>
+    <script type="text/javascript" src="js/jquery.Storage.js"></script>
+     <script type="text/javascript" charset="utf-8" src="cordova-2.7.0.js"></script>
+    <script type="text/javascript" src="js/jquery.jsonp-2.1.3.min.js"></script>
+
+    <link href="Styles/style.css" rel="stylesheet" />
+    <script type="text/javascript" charset="utf-8"> 
+        $(document).ready(function () {
+            var online = navigator.onLine;    // Detecting the internet connection
+            //alert(online);
+            if (online) {
+                // do your stuff
+            } else {
+                alert('You\'re Offline now...');
+                return false;
+            }
+
+            var userId = getUrlVars()["id"];
+            var userName = getUrlVars()["username"];
+            var Email = getUrlVars()["Email"];
+           // var MLID = getUrlVars()["MLID"];
+           // var ImageName = getUrlVars()["ImageName"];
+            $("#btnBack").click(function () {
+               
+                window.location = "MediaLibrary.html?id=" + userId + "&username=" + userName + "&Email=" + Email + "";
+            });
+            $("#btnSelectMedia").click(function () {
+                navigator.camera.getPicture(GetFileName,
+                                         function (message) { alert('get Media failed'); },
+                                         {
+                                             quality: 50,
+                                             destinationType: navigator.camera.DestinationType.FILE_URI,
+                                             sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY,
+                                             mediaType: navigator.camera.MediaType.ALLMEDIA
+                                         }
+                                         );
+            });
+            $("#cbShareMedia").on('click', function () {
+               // alert("clicked");
+                if (this.checked) {
+
+                    $(".input-text").css("display", "block");
+                }
+                else {
+                    $(".input-text").css("display", "none");
+                }
+            });
+            $("#btnSubmitFile").click(function () {
+               // alert("1");
+                $("#loader").css("display", "block");
+               var MediaUrl = document.getElementById('MediaURL').innerHTML;
+               // alert(MediaUrl);
+                uploadPhoto(MediaUrl);
+            //  Test();
+            //  SaveMedia();
+                   
+            }
+               );
+
+            function popup() {
+                $('#overEmailReport').fadeIn('fast', function () {
+                    $('#boxEmailReport').animate({ 'top': '160px' }, 500);
+                });
+            }
+            $('#boxcloseEmailReport').click(function () {
+                $('#boxEmailReport').animate({ 'top': '-400px' }, 500, function () {
+                    $('#overlayEmailReport').fadeOut('fast');
+                });
+            });
+
+
+        });
+         function SaveMedia() {
+         var userId = getUrlVars()["id"];
+         var Email = getUrlVars()["Email"];
+          var userName = getUrlVars()["username"];
+          //  alert("yes");
+            var MediaUrl = document.getElementById('MediaURL').innerHTML;
+            var MediaName= MediaUrl.substr(MediaUrl.lastIndexOf('/')+1);
+            // var MediaName= "10004056_662622410466351_1958423388_n.jpg";
+         // alert(MediaName);
+          //  alert($('#txtDescription').val());
+          //  alert($('#txtFriendsEmail').val());
+            if (cbShareMedia.checked) {
+               // alert("checked");
+                $.ajax({
+                    type: "POST",
+                      url: "http://www.reportninja.org/webservices/uploadmediamobile.asmx/UploadMediaOnFriendsLibrary",
+                 //   url: "UploadMediaFromMobile.asmx/UploadMediaOnFriendsLibrary",
+                    //data: "{'id': '" + Id + "'}",
+                    data: "{'FileName': '" + MediaName + "','Description':'" + $('#txtDescription').val() + "','FriendsEmail':'" + $('#txtFriendsEmail').val() + "'}",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+
+                        if (response != null && response != "") {
+                            var prods = response.d;
+                          // alert(prods);
+                          if(prods=="Done"){
+                           $("#loader").css("display", "none");
+                                alert("Media Content has been Uploaded and Shared successfully.");
+                                window.location = "MediaLibrary.html?id=" + userId + "&username=" + userName + "&Email=" + Email + "";
+                            }
+                            if (prods == "Email Not Found") {
+                             $("#loader").css("display", "none");
+                                alert("Email Id DoesNot Existx in Report Ninja Users");
+                            }
+
+                            {
+
+                            }
+                        }
+                        else {
+                            alert("No data to display");
+                            alert(response.d);
+                        }
+                    },
+                    error: function (e) {
+                        $("#Something").html("There was an error retrieving records." + "Error Description:  " + e.d);
+                    }
+
+                });
+            }
+            else {
+               // var MediaUrl = document.getElementById('MediaURL').innerHTML;
+               // var MediaName= MediaUrl.substr(MediaUrl.lastIndexOf('/')+1);
+              //  var name = "BACK.PNG";
+                var userId = getUrlVars()["id"];
+                var Email = getUrlVars()["Email"];
+               // alert(userId);
+              //  alert(MediaName);
+               // alert(Email);
+                $.ajax({
+                    type: "POST",
+                      url: "http://www.reportninja.org/webservices/uploadmediamobile.asmx/UploadFileInOwnLibrary",
+                    //url: "UploadMediaFromMobile.asmx/UploadMediaOnFriendsLibrary",
+                    //data: "{'id': '" + Id + "'}",
+                    data: "{'UserId': '" + userId + "','FileName':'" + MediaName + "','Description':'" + $('#txtDescription').val() + "','Email':'" + Email + "'}",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+
+                        if (response != null && response != "") {
+                            var prods = response.d;
+                            if (prods == "Done") {
+                             $("#loader").css("display", "none");
+                                alert("Media Content has been Uploaded successfully.");
+                                window.location = "MediaLibrary.html?id=" + userId + "&username=" + userName + "&Email=" + Email + "";
+                            }
+                            if (prods == "Email Not Found") {
+                             $("#loader").css("display", "none");
+                                alert("Email Id DoesNot Existx in Report Ninja Users");
+                            }
+
+                            {
+
+                            }
+                        }
+                        else {
+                            alert("No data to display");
+                            alert(response.d);
+                        }
+                    },
+                    error: function (e) {
+                        $("#Something").html("There was an error retrieving records." + "Error Description:  " + e.d);
+                    }
+
+                });
+            }
+        }
+        function getUrlVars() {
+            var vars = [], hash;
+            var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+            for (var i = 0; i < hashes.length; i++) {
+                hash = hashes[i].split('=');
+                vars.push(hash[0]);
+                vars[hash[0]] = hash[1];
+            }
+            return vars;
+        }
+        function GetFileName(imageURI) {
+            window.resolveLocalFileSystemURI(imageURI, function (entry) {
+
+                //console.log("****************HERE YOU WILL GET THE NAME AND OTHER PROPERTIES***********************");
+              //  alert(entry.name + " " + entry.fullPath);
+                document.getElementById("MediaURL").innerHTML = entry.fullPath;
+               // uploadPhoto(entry.fullPath);
+            }, function (e) {
+
+            });
+
+        }
+          function uploadPhoto(imageURI) {
+       
+      //  alert(imageURI);
+           var options = new FileUploadOptions(); 
+            options.fileKey="recFile"; 
+            var imagefilename = imageURI.substr(imageURI.lastIndexOf('/')+1); 
+            options.fileName=imagefilename; 
+            options.mimeType=this.mimeType; 
+            options.chunkedMode = false;
+            var params = new Object(); 
+            params.value1 = "test"; 
+            params.value2 = "param"; 
+
+            options.params = params; 
+
+            var ft = new FileTransfer(); 
+            ft.upload(imageURI, "http://www.reportninja.org/WebServices/UploadMediaMobile.asmx/UploadMedia", win, fail, options, true); 
+        } 
+
+function win(r) { 
+            //console.log("Code = " + r.responseCode); 
+            //console.log("Response = " + r.response); 
+            alert("Sent = " + r.d); 
+            SaveMedia();
+        } 
+
+        function fail(error) { 
+         $("#loader").css("display", "none");
+            alert("An error has occurred: Code = " + error.code); 
+        } 
+         function Test() {
+            $.ajax({
+                type: "POST",
+                  url: "http://www.reportninja.org/WebServices/UploadMediaMobile.asmx/HelloWorld",
+                //url: "UploadMediaFromMobile.asmx/UploadMediaOnFriendsLibrary",
+                //data: "{'id': '" + Id + "'}",
+               // data: "{'FileName': '" + name + "','Description':'" + $('#txtDescription').val() + "','FriendsEmail':'" + $('#txtFriendsEmail').val() + "'}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+
+                    alert(response.d);
+                },
+                error: function (e) {
+                    $("#Something").html("There was an error retrieving records." + "Error Description:  " + e.d);
+                }
+
+            });
+        }
+        
+    </script>   
+</head>
+<body style="padding: 0px; margin: 0px; background-color: #F4F4F4">
+    <div class="header">
+        <div class="header_container">
+
+            <div style="float:left; width:10%; margin-top:10px">
+                <input type="image" src="images/BACK.png" id="btnBack" />
+            </div>
+
+            <div class="header_right">
+                <div class="logo">
+
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+
+
+    <!--<div class="box" id="boxEmailReport">
+        <a class="boxclose" id="boxcloseEmailReport"></a>
+        <h1>Send this Report</h1>
+        <p class="boxP1">
+            Email Address(es):
+        </p>
+        <p>
+            <input type="text" placeholder="Enter comma separated Email Address(es)" id="txtEmailReportEmails" runat="server" class="TextBoxLarge" />
+        </p>
+        <p style="line-height:12px;">
+            <asp:CheckBox ID="cbAllowEditing" Text="  Allow report to be edited" runat="server" />
+        </p>
+
+        <div class="boxP3DivRight">
+            <input type="submit" value="Submit" id="SubmitEmail" />
+
+        </div>
+    </div>-->
+    <div id="wraper">
+        <!-- container starts-->
+        <div style="width: 100%; height: 100%; margin: 0px auto; position: absolute;">
+            <!-- login -->
+            <div style="width: 98%; height: auto; margin: 0px auto; position: relative;">
+                <center>
+                    <input type="button" id="btnSelectMedia" value="SelectMedia" />
+                    <div style="background: url(images/logo_communicator.png); display:none; width: 205px; height: 67px;
+                        margin: 50px auto;">
+                    </div>
+                     <div id="loader" style="display:none">
+                        <img src="images/ajax-loader.gif" />
+                    </div>
+                </center>
+                 <input id="txtDescription" class="input-area" type="text" placeholder="Enter Description"
+                       tabindex="1" size="50" maxlength="60" name="txtUsername" />
+                <div style="float:left; width:100%; height:auto">
+                <div style="float:left; width:100%; height:auto">
+                   
+                    <input type="checkbox" id="cbShareMedia" value="cb2" />&nbsp;Share with Friend
+                </div>
+                <div style="float: left; width: 100%; height: auto">
+                    <div class="input-text" style="display:none">
+                        Email Ids:
+                    
+                    <input id="txtFriendsEmail" class="input-area" type="text" placeholder="Enter comma separated Email Address(es)"
+                           tabindex="1" size="50" maxlength="60" name="txtUsername" />
+
+                    </div>
+
+
+                </div>
+                <center>
+                    <input id="btnSubmitFile" class="submit-btn" type="submit" tabindex="3"
+                           name="submit" value="Submit" style="color: #FFF; font-size: 24px; font-weight: bold;
+                        font-family: Arial; text-align: center;" />
+                </center>
+            </div>
+        </div>
+    </div>
+    <div id="MediaURL" style="display:none">
+    </div>
+</body>
+</html>

@@ -7,50 +7,7 @@
     <script type="text/javascript" src="js/jquery.Storage.js"></script>
     <script type="text/javascript" src="js/jquery.jsonp-2.1.3.min.js"></script>
     <title></title>
-    <style type="text/css">
-        .my_reports_text {
-            float: right;
-            width: 100px;
-            height: 100%;
-            padding-left: 10px;
-        }
-
-            .my_reports_text p {
-                color: white;
-                margin-top: 9px;
-                font-family: Arial;
-                font-size: 18px;
-            }
-
-        .header {
-            height: 45px;
-            background: url('images/header-bg.png') repeat-x;
-            width: 100%;
-        }
-
-        .header_container {
-            width: 100%;
-            margin: 0 1%;
-        }
-
-        .header_right {
-            float: right;
-            margin-right: 20px;
-        }
-
-        .logo {
-            float: left;
-            background: url('images/logo.png') no-repeat;
-            height: 45px;
-            width: 46px;
-            margin-top: 0px;
-        }
-
-        #btnBack {
-            
-            margin-top: 10px;
-        }
-    </style>
+    
     <script type="text/javascript">
         $(document).ready(function () {
             var Id = getUrlVars()["id"];
@@ -121,7 +78,7 @@
     <div class="header">
         <div class="header_container">
 
-            <div style="float:left; width:10%">
+            <div style="float:left; width:10%; margin-top:10px">
                 <input type="image" src="images/BACK.png" id="btnBack" />
             </div>
 
@@ -129,18 +86,11 @@
                 <div class="logo">
 
                 </div>
-                <div class="my_reports_text">
-                    <p style="font-size:100%">Report Ninja</p>
-                </div>
+              
             </div>
         </div>
     </div>
-    <div id="Something" class="schoolsList" style="display: none;">
-        <center>
-            <img src="images/logo_communicator.png" width="205px" height="67px" alt="InTouch Communicator"
-                 style="margin: 10px 0px 0px 0px;" />
-        </center>
-    </div>
+
     <div id="wraper">
         <!-- container starts-->
         <div style="width: 100%; height: 100%; margin: 0px auto; position: absolute;">

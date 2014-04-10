@@ -1,0 +1,222 @@
+@charset "utf-8";
+/* CSS Document */
+
+body
+{
+	margin:0px auto;
+	padding:0px;
+	background:#e4e4e4;
+	font-family:Arial, Helvetica, sans-serif;	
+}
+
+
+.bodyHome
+{
+	background:url(../images/Home-BG.jpg) left top no-repeat;
+	background-size:100%;	
+}
+
+.Header
+{
+	margin:0px;
+	padding:0px 0px 0px 0px;
+	background:#178ac1;
+	width:100%;
+	height:60px;
+}
+
+.Header .Home
+{
+	margin:8px 0px 0px 2%;
+	padding:0px;
+	float:left;
+	background:url(../images/home-ICO.jpg) center no-repeat;
+	width:46px;
+	height:42px;
+	color:transparent;
+	overflow:hidden;
+}
+
+.Header .Menu
+{
+	margin:8px 0px 0px 2%;
+	padding:0px;
+	float:left;
+	background:url(../images/menuButton.jpg) center no-repeat;
+	width:46px;
+	height:42px;
+	color:transparent;
+	overflow:hidden;
+}
+
+.Header .Name
+{
+	margin:15px 2% 0px 0px;
+	padding:0px;
+	color:#FFF;
+	float:right;
+	font-size:18px;
+}
+
+
+.LoginArea
+{
+	margin:50px 0px 0px 0px;
+	padding:0px 0px 20px 0px;
+	background:#FFF;
+	width:95%;
+	height:auto;	
+}
+
+.LoginArea .loginTxt
+{
+	margin:0px 0px 0px 3%;
+	padding: 8px 0px 0px 0px;
+	display:block;
+	clear:both;
+	text-align:left;
+	font-size:26px;
+	font-family:Century Gothic;
+	color:#333;
+}
+
+
+.LoginArea label
+{
+	margin:5px 0px 0px 3%;
+	padding: 8px 0px 0px 0px;
+	display:block;
+	clear:both;
+	text-align:left;
+	font-size:16px;
+	font-family:Century Gothic;
+	color:#666;
+}
+
+.LoginArea input[type=text], .LoginArea input[type=password]
+{
+	margin:5px 0px 0px 0px;
+	padding: 3px 5px 3px 5px;
+	width:91%;
+	border:1px solid #666;
+	border-radius:5px;
+	display:block;
+	outline:none;
+	clear:both;
+	text-align:left;
+	font-size:14px;
+	font-family:Century Gothic;
+	color:#666;
+}
+
+
+.LoginArea input[type=submit]
+{
+	margin:20px 0px 0px 0px;
+	padding: 5px 5px 5px 5px;
+	width:95%;
+	border:none;
+	border-radius:5px;
+	display:block;
+	outline:none;
+	clear:both;
+	background:#1486bc;
+	text-align:center;
+	font-size:16px;
+	font-family:Century Gothic;
+	color:#fff;
+}
+
+
+.ForgotPass
+{
+	margin:10px 0px 0px 0px;
+	padding: 5px 5px 5px 5px;
+	width:95%;
+	border:none;
+	border-radius:5px;
+	display:block;
+	outline:none;
+	clear:both;
+	text-decoration:none;
+	background:#1486bc;
+	text-align:center;
+	font-size:16px;
+	font-family:Century Gothic;
+	color:#fff;
+}
+
+
+.UserArea
+{
+	margin:0px 0px 0px 0px;
+	padding: 5px 0px 15px 0px;
+	width:100%;
+	height:auto;
+	background:#FFF;	
+}
+
+.UserArea img
+{
+	margin:10px 0px 0px 0px;
+	border-radius:100%;
+	width:30%;
+	clear:both;
+}
+
+
+.UserArea .username
+{
+	margin:5px 0px 0px 0px;
+	display:block;
+	text-align:center;
+	color:#333;
+	font-size:18px;
+}
+
+.UserArea .SignOut
+{
+	margin:5px 0px 0px 0px;
+	padding: 5px 0px 5px 0px;
+	display:block;
+	text-align:center;
+	text-decoration:none;
+	width:60%;
+	color:#fff;
+	background:#147fb3;
+	border-radius:5px;
+	font-size:18px;
+}
+
+
+.NavLinks
+{
+	margin:10px 0px 0px 0px;
+	width:97%;	
+}
+
+.NavLinks tr
+{
+clear:both;
+}
+
+
+.NavLinks tr td
+{
+	width:50%;
+	padding:3px 3px 3px 3px;
+}
+
+
+.NavLinks tr td a
+{
+	margin: 0px 0px 0px 0px;
+	padding: 15px 0px 15px 0px;
+	background:#012847;
+	text-align:center;
+	color:#FFF;
+	border-radius:5px;
+	text-decoration:none;
+	font-size:14px;
+	display:block;
+}
