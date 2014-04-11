@@ -47,8 +47,8 @@
                // alert("flag");
                 $.ajax({
                     type: "POST",
-                    url:"http://www.mobile.reportninja.org/webservice.asmx/LoadForms",
-                   // url: "WebService.asmx/LoadForms",
+                  url:"http://www.mobile.reportninja.org/webservice.asmx/LoadForms",
+                    //url: "WebService.asmx/LoadForms",
                     data: "{'UserId': '" + Id + "'}",
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
@@ -65,8 +65,9 @@
                                 var array = myarray[i].split("$");
                               
                                     //$.Storage.set(array[0], array[7]);
-                                    //alert("else");
-                                $("#accordion").append("<div class='accordion_head'> " + "<p class='heading3'>" + array[0] + "</p>" + "<div class='button_drop'>" + "</div>" + "</div>" + "<div class='sub_menu'> " + "<ul>" + "<li>" + "<a class='buttonDiv pop'  href='EditForm.html?FormId=" + array[7] + "&Id=" + Id + "&username=" + username + "&Email=" + Email + "'>" + "Edit" + "</a>" + "</li>" + "<li>" + "<div class='viewDiv' onclick=location.href='http://www.reportninja.org/MobileViewer?i=" + array[1] + "&v=" + array[2] + "&p=" + array[3] + "';>" + "<p class='buttonDiv' >" + "View" + "</p>" + "</div>" + "</li>" + "<li>" + "<a class='buttonDiv' href='LockForm.html?&formGuid=" + array[4] + "&formversionGuid=" + array[6] + "&TopPageGuid=" + array[2] + "&Id=" + Id + "&username=" + username +"&Email="+Email +"'>" + "Lock" + "</a>" + "</li>" + "<li>" + "<a class='buttonDiv' href='DeleteForm.html?formGuid=" + array[4] + "&formversionGuid=" + array[6] + "&Id=" + Id + "&username=" + username + "&Email=" + Email + "'>" + "Delete" + "</a>" + "</li>" + "</ul>" + "</div>");
+                                //alert("else");
+                               // alert(array[0]);
+                                $("#accordion").append("<div class='accordion_head'> " + "<p class='heading3'>" + array[0] + "</p>" + "<div class='button_drop'>" + "</div>" + "</div>" + "<div class='sub_menu'> " + "<ul>" + "<li>" + "<a class='buttonDiv'  href='EditForm.html?FormId=" + array[7] + "&Id=" + Id + "&username=" + username + "&Email=" + Email + "'>" + "Edit" + "</a>" + "</li>" + "<li>" + "<div class='viewDiv buttonDiv' onclick=location.href='http://www.reportninja.org/MobileViewer?i=" + array[1] + "&v=" + array[2] + "&p=" + array[3] + "';>" + "<p class='buttonDiv' >" + "View" + "</p>" + "</div>" + "</li>" + "<li>" + "<a class='buttonDiv' href='LockForm.html?&formGuid=" + array[4] + "&formversionGuid=" + array[6] + "&TopPageGuid=" + array[2] + "&Id=" + Id + "&username=" + username + "&Email=" + Email + "'>" + "Lock" + "</a>" + "</li>" + "<li>" + "<a class='buttonDiv' href='DeleteForm.html?formGuid=" + array[4] + "&formversionGuid=" + array[6] + "&Id=" + Id + "&username=" + username + "&Email=" + Email + "'>" + "Delete" + "</a>" + "</li>" + "</ul>" + "</div>");
                                 
                                 //$("#divReports").append(array[0] + "<a class='pop' href='#'>" + "Send" + "</a>" + "<br/>");
                             }

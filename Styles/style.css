@@ -335,5 +335,5 @@ input:-moz-placeholder {
                 text-decoration: none;
             }
  .buttonDiv {
-            float: left;
+            /*float: left;*/
         }
